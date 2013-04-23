@@ -690,27 +690,10 @@
   /**
    * Tests a string is a valid email. NOT the most elegant function...
    */
-  function isValidEmail(str)
+  function isValidEmail(email)
   {
-    var s = $.trim(str);
-    var at = "@";
-    var dot = ".";
-    var lat = s.indexOf(at);
-    var lstr = s.length;
-    var ldot = s.indexOf(dot);
-
-    if (s.indexOf(at)==-1 ||
-       (s.indexOf(at)==-1 || s.indexOf(at)==0 || s.indexOf(at)==lstr) ||
-       (s.indexOf(dot)==-1 || s.indexOf(dot)==0 || s.indexOf(dot)==lstr) ||
-       (s.indexOf(at,(lat+1))!=-1) ||
-       (s.substring(lat-1,lat)==dot || s.substring(lat+1,lat+2)==dot) ||
-       (s.indexOf(dot,(lat+2))==-1) ||
-       (s.indexOf(" ")!=-1))
-    {
-      return false;
-    }
-
-    return true;
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	  return re.test(email);
   }
 
 
