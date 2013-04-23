@@ -537,8 +537,9 @@
           break;
 
         case "function":
-          custom_function = fieldName;
-          eval("var result = " + custom_function + "()");
+          var context = {row: row, form: form};
+          var fn = window[fieldName];
+          result = fn.call(context);
 
           if (result.constructor.toString().indexOf("Array") != -1)
           {
